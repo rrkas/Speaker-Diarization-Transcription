@@ -6,6 +6,8 @@ https://chatgpt.com/share/68124798-93fc-8006-b343-51358aed110c
 **Goal**: Transcribe audio while separating who said what in real time.
 
 
+
+
 ## System Overview
 
 ```
@@ -31,8 +33,14 @@ https://chatgpt.com/share/68124798-93fc-8006-b343-51358aed110c
 Use:
 
 - VoxCeleb1/2 (speaker data)
+    - https://www.robots.ox.ac.uk/~vgg/data/voxceleb/
+    - https://academictorrents.com/details/bdd9f57a6f47aa197f502b68bc0195f5ac786ec4
+
 - AMI Meeting Corpus (meeting-style data)
+    - https://groups.inf.ed.ac.uk/ami/download/
+
 - LibriSpeech (for STT training)
+
 
 Preprocess:
 - Normalize audio, split into frames (20-40 ms)
