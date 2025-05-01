@@ -1,8 +1,9 @@
 backports.tarfile==1.2.0
+datasets==3.5.1
 importlib-metadata==8.0.0
+ipykernel==6.29.5
 jaraco.collections==5.1.0
-packaging==24.2
+librosa==0.11.0
 pip-chill==1.0.3
-platformdirs==4.2.2
+ruff==0.11.7
 tomli==2.0.1
-tqdm==4.67.1
