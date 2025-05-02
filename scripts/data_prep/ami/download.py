@@ -1,29 +1,33 @@
 import os
 import json
+import sys
+import uuid
 import numpy as np
 from tqdm import tqdm
 from datasets import load_dataset
 from scipy.io.wavfile import write
 from pathlib import Path
 
-rootdir = (Path(__file__).parent.parent.parent.parent).resolve()
-print(rootdir)
+root_dir = (Path(__file__).parent.parent.parent.parent).resolve()
+sys.path.insert(0, str(root_dir))
 
-cache_dir = (rootdir / "data" / "amicorpus").resolve()
-print(cache_dir)
+from scripts.utils.convert import sox_convert_file  # noqa: E402
 
-os.system(f"rm -rf {cache_dir / 'diarizers-community___ami'}")
-os.system(f"rm -rf {cache_dir / '*.lock'}")
+temp_dir = root_dir / "temp"
+data_dir = root_dir / "data" / "amicorpus"
+cache_dir = data_dir / "cache"
+
+# os.system(f"rm -rf {cache_dir}")
 
 # validate existing data
 data_validated = True
 for split in ["train", "test", "validation"]:
-    if not os.path.exists(cache_dir / split):
+    if not os.path.exists(data_dir / split):
         data_validated = False
         break
 
-    if len(list((cache_dir / split).glob("**/*.wav"))) != len(
-        list((cache_dir / split).glob("**/*.json"))
+    if len(list((data_dir / split).glob("**/*.wav"))) != len(
+        list((data_dir / split).glob("**/*.json"))
     ):
         data_validated = False
         break
@@ -50,13 +54,19 @@ def save_row(split: str, data_name: str, row: dict):
         )
     ]
 
-    audio_filepath = cache_dir / split / data_name / fname
-    info_filepath = cache_dir / split / data_name / fname.replace(".wav", ".json")
+    audio_fp = data_dir / split / data_name / fname
+    temp_fp = temp_dir / f"{uuid.uuid4().hex}.wav"
+    info_fp = data_dir / split / data_name / fname.replace(".wav", ".json")
 
-    os.makedirs(audio_filepath.parent, exist_ok=True)
-    write(audio_filepath, sampling_rate, audio_array.astype(np.float32))
+    os.makedirs(temp_fp.parent, exist_ok=True)
+    os.makedirs(audio_fp.parent, exist_ok=True)
 
-    with open(info_filepath, "w") as f:
+    write(temp_fp, sampling_rate, audio_array.astype(np.float32))
+    sox_convert_file(temp_fp, audio_fp)
+
+    os.remove(temp_fp)
+
+    with open(info_fp, "w") as f:
         json.dump(recs, f, indent=4)
 
 
@@ -73,5 +83,4 @@ for data_name in ["ihm", "sdm"]:
     del ds
 
 
-os.system(f"rm -rf {cache_dir / 'diarizers-community___ami'}")
-os.system(f"rm -rf {cache_dir / '*.lock'}")
+os.system(f"rm -rf {cache_dir}")

@@ -36,9 +36,7 @@ Use:
     - https://www.robots.ox.ac.uk/~vgg/data/voxceleb/
     - https://academictorrents.com/details/bdd9f57a6f47aa197f502b68bc0195f5ac786ec4
 
-- AMI Meeting Corpus (meeting-style data)
-    - https://groups.inf.ed.ac.uk/ami/download/
-
+- AMI Meeting Corpus (meeting-style data) [DONE]
 - LibriSpeech (for STT training)
 
 

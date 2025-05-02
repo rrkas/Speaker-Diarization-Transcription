@@ -5,5 +5,7 @@ ipykernel==6.29.5
 jaraco.collections==5.1.0
 librosa==0.11.0
 pip-chill==1.0.3
+pysndfx==0.3.6
 ruff==0.11.7
+sox==1.5.0
 tomli==2.0.1
