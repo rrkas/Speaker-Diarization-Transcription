@@ -3,10 +3,19 @@
         "amicorpus",
         "batchify",
         "diarizers",
+        "flac",
+        "ipykernel",
+        "jaraco",
         "Libri",
+        "librosa",
+        "MFCC",
+        "mfccs",
         "mtech",
+        "ndarray",
         "pycache",
+        "pysndfx",
         "rrka",
-        "rrkas"
+        "rrkas",
+        "tomli"
     ]
 }
