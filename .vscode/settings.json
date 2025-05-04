@@ -8,6 +8,8 @@
         "jaraco",
         "Libri",
         "librosa",
+        "melkwargs",
+        "mels",
         "MFCC",
         "mfccs",
         "mtech",
@@ -16,6 +18,7 @@
         "pysndfx",
         "rrka",
         "rrkas",
-        "tomli"
+        "tomli",
+        "torchaudio"
     ]
 }

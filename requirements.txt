@@ -9,3 +9,4 @@ pysndfx==0.3.6
 ruff==0.11.7
 sox==1.5.0
 tomli==2.0.1
+torchaudio==2.7.0
