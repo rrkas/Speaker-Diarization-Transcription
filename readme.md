@@ -1,7 +1,8 @@
 # Speaker Diarization & Transcription System
 
-- https://chatgpt.com/share/68124798-93fc-8006-b343-51358aed110c [OLD]
-- https://chatgpt.com/share/681678db-b944-800a-861f-947828145105 [LATEST]
+- **OLD**: https://chatgpt.com/share/68124798-93fc-8006-b343-51358aed110c
+- **LATEST**: https://chatgpt.com/share/681678db-b944-800a-861f-947828145105
+- **Compiled Google Doc**: https://docs.google.com/document/d/1StsDuGMUWbTJOWugY-tG2tn5I1lpVaO-_KTAK8wABXg/edit?usp=sharing
 
 **Goal**: Transcribe audio while separating who said what in real time.
 
