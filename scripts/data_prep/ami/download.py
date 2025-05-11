@@ -50,7 +50,9 @@ def save_row(split: str, data_name: str, row: dict):
             "speaker": speaker,
         }
         for start, end, speaker in zip(
-            row["timestamps_start"], row["timestamps_end"], row["speakers"]
+            row["timestamps_start"],
+            row["timestamps_end"],
+            row["speakers"],
         )
     ]
 
@@ -73,7 +75,11 @@ def save_row(split: str, data_name: str, row: dict):
 # ihm: Individual Headset Microphone
 # sdm: Single Distant Microphone
 for data_name in ["ihm", "sdm"]:
-    ds = load_dataset("diarizers-community/ami", data_name, cache_dir=str(cache_dir))
+    ds = load_dataset(
+        "diarizers-community/ami",
+        data_name,
+        cache_dir=str(cache_dir),
+    )
     print(ds)
 
     for split in ds:
