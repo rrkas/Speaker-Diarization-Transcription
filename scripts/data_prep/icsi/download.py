@@ -34,5 +34,9 @@ for url in tqdm(sorted(urls)):
     run_cmd(f"wget -c --tries=0 --read-timeout=20 {url} -P {tgt_dir}")
 
 
-# for url in ["https://groups.inf.ed.ac.uk/ami/ICSICorpusAnnotations/ICSI_core_NXT.zip"]:
-#     run_cmd(f"")
+for url in [
+    "https://groups.inf.ed.ac.uk/ami/ICSICorpusAnnotations/ICSI_core_NXT.zip",
+    "https://groups.inf.ed.ac.uk/ami/ICSICorpusAnnotations/ICSI_plus_NXT.zip",
+    "https://groups.inf.ed.ac.uk/ami/ICSICorpusAnnotations/ICSI_original_transcripts.zip",
+]:
+    run_cmd(f"wget -c --tries=0 --read-timeout=20 {url} -P {data_dir}")
