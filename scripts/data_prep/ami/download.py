@@ -43,18 +43,21 @@ def save_row(split: str, data_name: str, row: dict):
     audio_array = row["audio"]["array"]
     sampling_rate = row["audio"]["sampling_rate"]
 
-    recs = [
-        {
-            "start": start,
-            "end": end,
-            "speaker": speaker,
-        }
-        for start, end, speaker in zip(
-            row["timestamps_start"],
-            row["timestamps_end"],
-            row["speakers"],
+    recs = []
+
+    for start, end, speaker in zip(
+        row["timestamps_start"],
+        row["timestamps_end"],
+        row["speakers"],
+    ):
+
+        recs.append(
+            {
+                "start": start,
+                "end": end,
+                "speaker": speaker,
+            }
         )
-    ]
 
     audio_fp = data_dir / split / data_name / fname
     temp_fp = temp_dir / f"{uuid.uuid4().hex}.wav"
@@ -83,10 +86,30 @@ for data_name in ["ihm", "sdm"]:
     print(ds)
 
     for split in ds:
+        tot_uttrs = 0
+        tot_dur_secs = 0
+        uniq_spkrs = set()
+
         for row in tqdm(ds[split], desc=split):
-            save_row(split, data_name, row)
+            # save_row(split, data_name, row)
+            for start, end, speaker in zip(
+                row["timestamps_start"],
+                row["timestamps_end"],
+                row["speakers"],
+            ):
+                tot_uttrs += 1
+                tot_dur_secs += end - start
+                uniq_spkrs.add(speaker)
+
+        print(
+            data_name,
+            split,
+            tot_uttrs,
+            round(tot_dur_secs / 3600, 3),
+            len(uniq_spkrs),
+        )
 
     del ds
 
 
-os.system(f"rm -rf {cache_dir}")
+# os.system(f"rm -rf {cache_dir}")

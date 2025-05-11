@@ -1,6 +1,7 @@
-backports.tarfile
+aiohttp
 black
 datasets
+gdown
 importlib-metadata
 inflect
 ipykernel
@@ -8,6 +9,7 @@ jaraco.collections
 librosa
 pip-chill
 pysndfx
+pysocks
 ruff
 sox
 tokenize-rt

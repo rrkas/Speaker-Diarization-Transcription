@@ -29,4 +29,4 @@ for url in [
         run_cmd(f"tar -xzf {tar_fp} -C {data_dir}")
 
 
-run_cmd(f"rm {data_dir}/*.tar.gz")
+# run_cmd(f"rm {data_dir}/*.tar.gz")
